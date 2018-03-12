@@ -1,0 +1,76 @@
+using mvcapp.Models;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity.Core.Objects;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace mvcapp.Controllers
+{
+    public class IndexController : Controller
+    {
+        // GET: Index
+        int gid = 1000;
+        public ActionResult Index()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Index(mvc1334255 obj)
+        {
+            if(ModelState.IsValid)
+            {
+                DB01TEST01Entities d = new DB01TEST01Entities();
+                ObjectParameter p = new ObjectParameter("cid", 0);
+                d.mva_ka_proc(obj.name, obj.city, p);
+                int id = Convert.ToInt32(p.Value);
+                Response.Write("<script>alert('Addded to table with id : " + id + "')</script>");
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+        public ActionResult view()
+        {
+            DB01TEST01Entities m = new DB01TEST01Entities();
+            var a = m.mvc_ko_view().ToList();
+            ViewBag.abc = a;
+            return View();
+        }
+        public ActionResult delbyid(int id)
+        {
+            DB01TEST01Entities del = new DB01TEST01Entities();
+            del.mvc_ka_delete(id);
+            return RedirectToAction("view");
+        }
+        public ActionResult upbyid(int id)
+        {
+            DB01TEST01Entities m = new DB01TEST01Entities();
+            var a = m.mvc_ko_view().ToList();
+            ViewBag.abc = a;
+            ViewBag.id1 = id;
+            gid = id;
+
+            return View();
+
+        }
+        [HttpPost]
+        public ActionResult upbyid(mvc1334255 obj)
+        {
+            DB01TEST01Entities a = new DB01TEST01Entities();
+          //  Response.Write("<script>alert('Addded to table with id : " + obj.city + obj.name+"')</script>");
+            a.mvc_ko_update(gid, obj.name, obj.city);
+            return RedirectToAction("view");
+
+        }
+        public ActionResult radiobutt()
+        {
+            DB01TEST01Entities m = new DB01TEST01Entities();
+            var a = m.mvc_ko_view().ToList();
+            ViewBag.abc = a;
+            var dropDownListElements = new SelectList(m.getNames1334255().ToList(), "id","name");
+            ViewData["dropDownListElements"] = dropDownListElements; 
+            return View();
+        }
+    }
+}
