@@ -1,0 +1,26 @@
+@model mvcapp.Models.Class1
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Register Page</h2>
+@using (Html.BeginForm())
+{
+    <table>
+        <tr>
+            <td>@Html.LabelFor(s=> s.name)</td>
+            <td>@Html.TextBoxFor(s=>s.name)</td>
+            <td>@Html.ValidationMessageFor(s=>s.name)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(s => s.city)</td>
+            <td>@Html.TextBoxFor(s => s.city)</td>
+            <td>@Html.ValidationMessageFor(s => s.city)</td>
+        </tr>
+        <tr>
+          
+            <td><input type="submit" value="submit"</td>
+            
+        </tr>
+    </table>
+}
