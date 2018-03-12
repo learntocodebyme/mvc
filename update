@@ -1,0 +1,47 @@
+@model mvcapp.Models.mvc1334255
+
+@{
+    ViewBag.Title = "upbyid";
+}
+
+<h2>upbyid</h2>
+@using (Html.BeginForm())
+{
+
+<table cellpadding="10">
+    <thead>
+    <th>ID</th>
+    <th>Name</th>
+    <th>City</th>
+    <th>Action</th>
+    </thead>
+
+        @foreach (var item in ViewBag.abc)
+        {
+            if (@item.id == ViewBag.id1)
+            {
+                <tr>
+                    <td>@item.id</td>
+                    <td>@Html.TextBoxFor(s => s.name)</td>
+                    <td>@Html.TextBoxFor(s => s.city)</td>
+                    <td><input type="submit" value="update" /></td>
+                  
+                </tr>
+                continue;
+            }
+            //else
+            {
+
+                <tr>
+                    <td>@item.id</td>
+                    <td>@item.name</td>
+                    <td>@item.city</td>
+                    <td>
+                        @Html.ActionLink("Delete", "delbyid", new { @item.id })|
+                        @Html.ActionLink("Update", "upbyid", new { @item.id })
+                    </td>
+                    </tr>
+            }
+        }
+</table>
+}
