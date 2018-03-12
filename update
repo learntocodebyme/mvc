@@ -22,8 +22,8 @@
             {
                 <tr>
                     <td>@item.id</td>
-                    <td>@Html.TextBoxFor(s => s.name)</td>
-                    <td>@Html.TextBoxFor(s => s.city)</td>
+                    <td>@Html.TextBoxFor(s => s.name, new { Value= @item.name })</td>
+                    <td>@Html.TextBoxFor(s => s.city, new { Value = @item.city })</td>
                     <td><input type="submit" value="update" /></td>
                   
                 </tr>
