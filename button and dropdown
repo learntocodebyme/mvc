@@ -1,0 +1,32 @@
+@model mvcapp.Models.mvc1334255
+@{
+    ViewBag.Title = "radiobutt";
+}
+
+<h2>radiobutt</h2>
+
+@using (Html.BeginForm())
+{
+    <table>
+        <tr>
+            <td>@Html.LabelFor(s => s.name)</td>
+            <td>@Html.DropDownListFor(s => s.name, (IEnumerable<SelectListItem>)ViewData["dropDownListElements"]) </td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>@Html.LabelFor(s => s.city)</td>
+        @foreach (var item in ViewBag.abc)
+        {
+
+            <td>@Html.RadioButtonFor(s => s.city, new { Value = item.city })</td>
+            <td>@Html.Label((string)@item.city)</td>
+        }
+        </tr>
+        <tr>
+
+            <td><input type="submit" value="submit"</td>
+
+        </tr>
+    </table>
+}
