@@ -11,7 +11,7 @@ namespace mvcapp.Controllers
     public class IndexController : Controller
     {
         // GET: Index
-        int gid = 1000;
+        int gid;
         public ActionResult Index()
         {
             return View();
@@ -59,7 +59,7 @@ namespace mvcapp.Controllers
         {
             DB01TEST01Entities a = new DB01TEST01Entities();
           //  Response.Write("<script>alert('Addded to table with id : " + obj.city + obj.name+"')</script>");
-            a.mvc_ko_update(gid, obj.name, obj.city);
+            a.mvc_ko_update(obj.id, obj.name, obj.city);
             return RedirectToAction("view");
 
         }
